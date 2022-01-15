@@ -4,9 +4,14 @@
     "name": "Jake Tober"
   },
   "scripts": {
-    "build": "run-s tsc fixImports",
+    "build": "run-s clean:* tsc jest fixImports copyResult",
+    "clean:lib": "del-cli lib/*",
+    "clean:bin": "del-cli bin/*",
+    "test": "run-s clean:bin tsc jest",
+    "jest": "jest bin",
     "tsc": "tsc",
-    "fixImports": "fix-tsc-esnext-imports lib"
+    "fixImports": "fix-tsc-esnext-imports lib",
+    "copyResult": "cpy \"bin/**/!(*.test){*.js,*.d.ts}\" \"lib\""
   },
   "version": "1.0.0",
   "description": "hooks, no strings attached",
@@ -14,10 +19,18 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@babel/preset-env": "^7.16.8",
     "@tobes31415/dispose": "^4.0.1",
-    "fix-tsc-esnext-imports": "^1.0.5",
-    "npm-run-all": "^4.1.5",
-    "tsc": "^2.0.3",
     "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.16.7",
+    "@types/jest": "^27.4.0",
+    "cpy-cli": "^3.1.1",
+    "del-cli": "^4.0.1",
+    "fix-tsc-esnext-imports": "^1.0.5",
+    "jest": "^27.4.7",
+    "npm-run-all": "^4.1.5",
+    "tsc": "^2.0.3"
   }
 }

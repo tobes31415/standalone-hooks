@@ -1,5 +1,5 @@
 import { Callback, Indexable, HookSlotRequest, HookContext } from "./types";
-import gc from "@tobes31415/dispose";
+import * as gc from "@tobes31415/dispose";
 
 interface ContextMemorySlot<State extends object = any> {
     state: State;
