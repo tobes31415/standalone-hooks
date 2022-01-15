@@ -8,7 +8,7 @@ interface ContextMemorySlot<State extends object = any> {
 
 const currentExecutingStack: ContextInternalImplementation<any, any>[] = [];
 
-export function getSlot<State extends object = any>(request: HookSlotRequest<State>): State {
+export function getHookSlot<State extends object = any>(request: HookSlotRequest<State>): State {
     if (currentExecutingStack.length === 0) {
         throw new Error("No available context, you need to invoke the context before accessing it");
     }
@@ -30,7 +30,10 @@ class ContextInternalImplementation<Fn extends Function, FnThis extends object =
     constructor(private fnRef: Fn, private fnThisRef?: FnThis) {
         this.invoke = this.invokeInternal.bind(this) as any;
         gc.onDisposeChain(this.invoke, this);
-        gc.onDisposeDisposeProperties(this);
+        gc.onDisposeChain(this, this.indexedSlots);
+        gc.onDisposeChain(this, this.namedSlots);
+        gc.onDisposeDisposeProperties(this.indexedSlots);
+        gc.onDisposeDisposeProperties(this.namedSlots);
         gc.onDisposeDeleteProperties(this);
     }
 
@@ -91,6 +94,7 @@ class ContextInternalImplementation<Fn extends Function, FnThis extends object =
                 gc.onDispose(slot, () => dispose(slot.state));
             }
         }
+        slot.update = request.update;
 
         gc.onDisposeDisposeProperties(slot.state);
         gc.onDisposeDeleteProperties(slot.state);
