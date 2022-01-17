@@ -1162,6 +1162,18 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@tobes31415/basic-observables@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@tobes31415/basic-observables/-/basic-observables-1.0.2.tgz#2955c7daecc8f1d7654c02e7c94d27f0f29dffbd"
+  integrity sha512-XCyoc3CBNu6xaiMMIdJvUY8boaAzGxzh/R21vRhqhafeZLjC92f9eMV3CMcxBRWveYfgbV18w6Ef9uybYVs1Dg==
+  dependencies:
+    "@tobes31415/dispose" "^3.0.0"
+
+"@tobes31415/dispose@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@tobes31415/dispose/-/dispose-3.0.0.tgz#f0e44d8e345f06099f53486593230cfe62c5c6ef"
+  integrity sha512-dYNTry+asYBa8Nxn+Qx7OQMoyNvmbwxsuJyOecfgioJrrq3k+ba+B7Ghvz/ckh5fwtuRJRSpyc65DjyumcSu8A==
+
 "@tobes31415/dispose@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@tobes31415/dispose/-/dispose-4.0.1.tgz#748409e2badf8cd53831b27db693a068a7e9a80c"
